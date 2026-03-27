@@ -8,4 +8,10 @@
 import pandas as pd
 
 #load the prompts 
-prompts = pd.read_
+prompts = pd.read_csv("data/harmful_behaviors.csv")
+
+#preview first 5 rows
+print(prompts.head())
+
+#Basic infor
+print(prompts.info())
