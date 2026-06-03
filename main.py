@@ -15,3 +15,6 @@ print(prompts.head())
 
 #Basic infor
 print(prompts.info())
+
+#check how many missing vlaues are there in each column 
+print(prompts.isnull().sum())
