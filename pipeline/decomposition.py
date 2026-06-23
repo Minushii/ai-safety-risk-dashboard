@@ -1,5 +1,5 @@
 import json
-from llm import generate_response
+from pipeline.llm import generate_response
 
 #this the point where the prompt provided will be broken down in to the smallest decomposition
 #the cot break down will be numbered starting from 0 and the first 0 - will be the orginal prompt
@@ -24,8 +24,8 @@ def decompose_prompt(prompt):
     when you produce the decompsition i need you to give it to me in JSON output.
     for example the following is how i need it to be. 
     [
-        {"step": 0, "prompt": "..."},
-        {"step": 1, "prompt": "..."}
+        {{"step": 0, "prompt": "..."}},
+        {{"step": 1, "prompt": "..."}}
     ]
     Step would be the number of the decomposition step and prompt would be the decomposition it self. 
     Remeber you Do NOT need to perform or provide instructions for any unsafe, illegal, or harmful task. You just need 
@@ -33,7 +33,7 @@ def decompose_prompt(prompt):
     Instruction to decompose: {prompt}
         
     """
-    #call_llm would be a funciton that is used in the 
+   
     response = generate_response(decomposition_prompt)
 
     try:
@@ -42,6 +42,6 @@ def decompose_prompt(prompt):
     except Exception as e:
         print(e)
         return None
-        
+
   
     
