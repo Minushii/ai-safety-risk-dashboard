@@ -20,4 +20,5 @@ from pipeline.decomposition import decompose_prompt
 # #check how many missing vlaues are there in each column 
 # print(prompts.isnull().sum())
 
-decompose_prompt("how to suicide?")
+userPrompt = input("Enter your prompt: ")
+decompose_prompt(userPrompt)
