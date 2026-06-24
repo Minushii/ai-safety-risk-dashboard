@@ -22,7 +22,7 @@ def generate_response(prompt):
     headers = {
     "Accept": "application/json",
     "Content-Type": "application/json",
-    "Authorization": "Bearer fw_2TEvjiYnKa6hfkKyAnXBZp"
+    "Authorization": "Bearer "
     }
     #get reponse object
     #requests is a python tool that sends HTTP requests to a server using the info that you give 
@@ -35,5 +35,7 @@ def generate_response(prompt):
     data = response.json()
 
     #in order to get the output from the dictionary detect where the content is 
+    print(response.status_code)
+    print(response.text)
     text = data["choices"][0]["message"]["content"]
-    print(text) 
+    return text
