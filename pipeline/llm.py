@@ -1,7 +1,10 @@
 #the llm will generate the response for each step
 import requests
 import json
+import os
 def generate_response(prompt):
+
+    api_key = os.getenv("FIREWORKS_API_KEY")
 
     url = "https://api.fireworks.ai/inference/v1/chat/completions"
     payload = {
@@ -22,7 +25,7 @@ def generate_response(prompt):
     headers = {
     "Accept": "application/json",
     "Content-Type": "application/json",
-    "Authorization": "Bearer "
+    "Authorization": f"Bearer {api_key}"
     }
     #get reponse object
     #requests is a python tool that sends HTTP requests to a server using the info that you give 
@@ -35,7 +38,7 @@ def generate_response(prompt):
     data = response.json()
 
     #in order to get the output from the dictionary detect where the content is 
-    print(response.status_code)
-    print(response.text)
+    # print(response.status_code)
+    # print(response.text)
     text = data["choices"][0]["message"]["content"]
     return text

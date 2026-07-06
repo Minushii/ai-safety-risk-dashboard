@@ -21,4 +21,5 @@ from pipeline.decomposition import decompose_prompt
 # print(prompts.isnull().sum())
 
 userPrompt = input("Enter your prompt: ")
-decompose_prompt(userPrompt)
+result = decompose_prompt(userPrompt)
+print(result)

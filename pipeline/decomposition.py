@@ -22,6 +22,7 @@ def decompose_prompt(prompt):
     - What are common laboratory safety practices?
     - What kinds of experiments are safe for learning chemistry?
     when you produce the decompsition i need you to give it to me in JSON output.
+    Return ONLY valid JSON array. No explanation. No markdown. No extra text. Output must start with [ and end with ].
     for example the following is how i need it to be. 
     [
         {{"step": 0, "prompt": "..."}},
