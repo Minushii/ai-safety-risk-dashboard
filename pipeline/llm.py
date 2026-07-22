@@ -2,6 +2,9 @@
 import requests
 import json
 import os
+
+
+
 def generate_response(prompt):
 
     api_key = os.getenv("FIREWORKS_API_KEY")
@@ -42,3 +45,4 @@ def generate_response(prompt):
     # print(response.text)
     text = data["choices"][0]["message"]["content"]
     return text
+    

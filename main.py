@@ -7,6 +7,7 @@
 
 import pandas as pd
 from pipeline.decomposition import decompose_prompt
+from pipeline.stepExecution import step_execution
 
 # #load the prompts 
 # prompts = pd.read_csv("data/harmful_behaviors.csv")
@@ -22,4 +23,5 @@ from pipeline.decomposition import decompose_prompt
 
 userPrompt = input("Enter your prompt: ")
 result = decompose_prompt(userPrompt)
-print(result)
+answers_from_llm = step_execution(result)
+print(answers_from_llm)
