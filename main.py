@@ -9,6 +9,24 @@ import pandas as pd
 from pipeline.decomposition import decompose_prompt
 from pipeline.stepExecution import step_execution
 
+from fastapi import FastAPI
+
+# using pydantic library to define what type of text should be sent to the API
+from pydantic import BaseModel
+
+class PromptRequest(BaseModel):
+    prompt:str
+
+app = FastAPI()
+@app.get("/")
+def home():
+    return "Hello from FastAPI!"
+
+@app.post("/analyze")
+def analyze(request:PromptRequest):
+    result = decompose_prompt(request.prompt)
+    return result
+
 # #load the prompts 
 # prompts = pd.read_csv("data/harmful_behaviors.csv")
 
@@ -21,7 +39,7 @@ from pipeline.stepExecution import step_execution
 # #check how many missing vlaues are there in each column 
 # print(prompts.isnull().sum())
 
-userPrompt = input("Enter your prompt: ")
-result = decompose_prompt(userPrompt)
-answers_from_llm = step_execution(result)
-print(answers_from_llm)
+
+
+# answers_from_llm = step_execution(result)
+# print(answers_from_llm)

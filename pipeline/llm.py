@@ -8,6 +8,7 @@ import os
 def generate_response(prompt):
 
     api_key = os.getenv("FIREWORKS_API_KEY")
+    
 
     url = "https://api.fireworks.ai/inference/v1/chat/completions"
     payload = {

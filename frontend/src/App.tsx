@@ -20,7 +20,8 @@ function App() {
 
   function analyzePrompt(){
     //once the button is clicked this function will run 
-    setLlmAnswer("The answer from the LLM is this")
+    //the prompt typed should be sent to the backend 
+    
     
   }
 
