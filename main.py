@@ -25,7 +25,9 @@ def home():
 @app.post("/analyze")
 def analyze(request:PromptRequest):
     result = decompose_prompt(request.prompt)
-    return result
+    answers_from_llm = step_execution(result)
+
+    return answers_from_llm
 
 # #load the prompts 
 # prompts = pd.read_csv("data/harmful_behaviors.csv")
@@ -41,5 +43,4 @@ def analyze(request:PromptRequest):
 
 
 
-# answers_from_llm = step_execution(result)
 # print(answers_from_llm)

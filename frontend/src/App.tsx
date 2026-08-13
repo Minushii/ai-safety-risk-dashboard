@@ -16,12 +16,13 @@ import './App.css'
 
 function App() {
   const [llmAnswer, setLlmAnswer] = useState("")
+  
 
 
   function analyzePrompt(){
     //once the button is clicked this function will run 
-    //the prompt typed should be sent to the backend 
-    
+    //the prompt typed should be sent to the the FastAPI which will inturn send it to the backend
+
     
   }
 
