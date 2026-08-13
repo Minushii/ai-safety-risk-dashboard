@@ -16,20 +16,29 @@ import './App.css'
 
 function App() {
   const [llmAnswer, setLlmAnswer] = useState("")
+
+  //create a usestate for the user prompt
+  const[userPrompt, setUserPrompt] = useState(" ")
   
 
 
-  function analyzePrompt(){
+  async function analyzePrompt(){
     //once the button is clicked this function will run 
     //the prompt typed should be sent to the the FastAPI which will inturn send it to the backend
-
+    const response = await fetch("http://localhost:8000/analyze",
+      {method:"POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({prompt:userPrompt})
+        
     
+  })
+  const data = await response.json()
+  console.log(data)
   }
-
   return (
     <div>
       <h1>AI Safety Risk Analysis</h1>
-      <input type="text" id="inputPrompt" placeholder="Enter prompt " style={{ width: '300px' }} />
+      <input type="text" id="inputPrompt" placeholder="Enter prompt " style={{ width: '300px' }} value={userPrompt}  onChange={(event)=> setUserPrompt(event.target.value)}/>
       <br />
       <button type="button" onClick={analyzePrompt}>Analyze</button>
       <br/>
