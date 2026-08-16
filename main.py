@@ -8,6 +8,7 @@
 import pandas as pd
 from pipeline.decomposition import decompose_prompt
 from pipeline.stepExecution import step_execution
+from fastapi.middleware.cors import CORSMiddleware
 
 from fastapi import FastAPI
 
@@ -18,6 +19,17 @@ class PromptRequest(BaseModel):
     prompt:str
 
 app = FastAPI()
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
+
+
+
 @app.get("/")
 def home():
     return "Hello from FastAPI!"

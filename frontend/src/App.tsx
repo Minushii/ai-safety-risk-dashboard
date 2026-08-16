@@ -15,7 +15,7 @@ import './App.css'
     // setLlmAnswer is changed
 
 function App() {
-  const [llmAnswer, setLlmAnswer] = useState("")
+  const [llmAnswer, setLlmAnswer] = useState([])
 
   //create a usestate for the user prompt
   const[userPrompt, setUserPrompt] = useState(" ")
@@ -34,7 +34,14 @@ function App() {
   })
   const data = await response.json()
   console.log(data)
+  setLlmAnswer(data)
+  
+  
   }
+
+  const normalText = llmAnswer.map((item) => `Step ${item.step}: ${item.prompt} - ${item.answer}`)
+    .join('\n')
+
   return (
     <div>
       <h1>AI Safety Risk Analysis</h1>
@@ -42,10 +49,11 @@ function App() {
       <br />
       <button type="button" onClick={analyzePrompt}>Analyze</button>
       <br/>
-      <div>The answer from the llm is {llmAnswer}</div>
+      {/* <div>The answer from the llm is {llmAnswer}</div> */}
 
+      <pre style={{ fontSize: "14px" }}>{normalText}</pre>
 
-
+      
     </div>
    
 

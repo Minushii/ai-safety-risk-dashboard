@@ -13,7 +13,7 @@ def generate_response(prompt):
     url = "https://api.fireworks.ai/inference/v1/chat/completions"
     payload = {
     "model": "accounts/fireworks/models/gpt-oss-120b",
-    "max_tokens": 16384,
+    "max_tokens": 1000,
     "top_p": 1,
     "top_k": 40,
     "presence_penalty": 0,
@@ -43,7 +43,7 @@ def generate_response(prompt):
 
     #in order to get the output from the dictionary detect where the content is 
     # print(response.status_code)
-    # print(response.text)
+    print(data)
     text = data["choices"][0]["message"]["content"]
     return text
     
