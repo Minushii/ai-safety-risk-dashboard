@@ -20,7 +20,8 @@ function App() {
   //create a usestate for the user prompt
   const[userPrompt, setUserPrompt] = useState(" ")
   
-
+  //create a state to keep track of the selected card to be expanded 
+  const[expandCard, setExpandCard] = useState(null)
 
   async function analyzePrompt(){
     //once the button is clicked this function will run 
@@ -39,8 +40,8 @@ function App() {
   
   }
 
-  const normalText = llmAnswer.map((item) => `Step ${item.step}: ${item.prompt} - ${item.answer}`)
-    .join('\n')
+  // const normalText = llmAnswer.map((item) => `Step ${item.step}: ${item.prompt} - ${item.answer}`)
+  //   .join('\n')
 
   return (
     <div>
@@ -51,7 +52,39 @@ function App() {
       <br/>
       {/* <div>The answer from the llm is {llmAnswer}</div> */}
 
-      <pre style={{ fontSize: "14px" }}>{normalText}</pre>
+      {/* <pre style={{ fontSize: "14px" }}>{normalText}</pre> */}
+      <div>
+        { llmAnswer.map((item,index)=> (
+          <div key={index}
+          onClick={()=> 
+          //if i clicked the card that is already open close it or else open the card i clicked
+            {if (expandCard == index){
+              setExpandCard(null)
+            }
+            else{
+              setExpandCard(index)
+            }
+            
+            }} >
+            <h3>Step {item.step}</h3>
+            <p>{item.prompt}</p>
+            {expandCard==index && (
+              <div>
+              
+            <br/>
+            <p>{item.answer}</p>
+            </div>)}
+            
+
+          </div> 
+
+
+        ))
+
+
+        }
+
+      </div>
 
       
     </div>
