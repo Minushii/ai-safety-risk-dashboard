@@ -73,6 +73,8 @@ function App() {
               
             <br/>
             <p>{item.answer}</p>
+            <br/>
+            <pre>{JSON.stringify(item.evaluation, null, 2)}</pre>
             </div>)}
             
 
