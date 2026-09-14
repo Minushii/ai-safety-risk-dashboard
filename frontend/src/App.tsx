@@ -44,55 +44,71 @@ function App() {
   //   .join('\n')
 
   return (
+
+    Array.isArray(llmAnswer)?(
     <div>
       <h1>AI Safety Risk Analysis</h1>
       <input type="text" id="inputPrompt" placeholder="Enter prompt " style={{ width: '300px' }} value={userPrompt}  onChange={(event)=> setUserPrompt(event.target.value)}/>
       <br />
-      <button type="button" onClick={analyzePrompt}>Analyze</button>
+        <button type="button" onClick={analyzePrompt}>Analyze</button>
       <br/>
       {/* <div>The answer from the llm is {llmAnswer}</div> */}
 
       {/* <pre style={{ fontSize: "14px" }}>{normalText}</pre> */}
-      <div>
-        { llmAnswer.map((item,index)=> (
-          <div key={index}
-          onClick={()=> 
-          //if i clicked the card that is already open close it or else open the card i clicked
-            {if (expandCard == index){
-              setExpandCard(null)
-            }
-            else{
-              setExpandCard(index)
-            }
-            
-            }} >
-            <h3>Step {item.step}</h3>
-            <p>{item.prompt}</p>
-            {expandCard==index && (
-              <div>
+        <div>
+          { llmAnswer.map((item,index)=> (
+            <div key={index}
+            onClick={()=> 
+            //if i clicked the card that is already open close it or else open the card i clicked
+              {if (expandCard == index){
+                setExpandCard(null)
+              }
+              else{
+                setExpandCard(index)
+              }
               
-            <br/>
-            <p>{item.answer}</p>
-            <br/>
-            <pre>{JSON.stringify(item.evaluation, null, 2)}</pre>
-            </div>)}
-            
+              }} >
+              <h3>Step {item.step}</h3>
+              <p>{item.prompt}</p>
+              {expandCard==index && (
+                <div>
+                
+              <br/>
+              <p>{item.answer}</p>
+              <br/>
+              <pre>{JSON.stringify(item.evaluation, null, 2)}</pre>
+              </div>)}
+              
 
-          </div> 
+            </div> 
+        ))}
+        </div>
+        </div>):
+
+        (<div>
+          <h1>AI Safety Risk Analysis</h1>
+          <input type="text" id="inputPrompt" placeholder="Enter prompt " style={{ width: '300px' }} value={userPrompt}  onChange={(event)=> setUserPrompt(event.target.value)}/>
+          <br />
+            <button type="button" onClick={analyzePrompt}>Analyze</button>
+          <br/>
+          <p>{llmAnswer}</p>
+        </div>)
 
 
-        ))
+        )
 
 
-        }
+     
+    
+     
 
-      </div>
 
+   
       
-    </div>
+  
    
 
-  )
+  
 }
 
 export default App

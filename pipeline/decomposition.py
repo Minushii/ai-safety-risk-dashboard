@@ -41,8 +41,10 @@ def decompose_prompt(prompt):
         data = json.loads(response)
         return data
     except Exception as e:
-        print(e)
-        return None
+        # print("exception = ",e)
+        print("LLM Response = ",response)
+        llm_response = response
+        return llm_response
 
   
     

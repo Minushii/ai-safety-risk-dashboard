@@ -14,17 +14,27 @@ def step_execution(decomposed_steps):
        4. repeat it for all the prompts
        5. return the answers"""
     
-    for step in decomposed_steps:
-        if step is not None:
-            stepPrompt = step["prompt"]
-            answerPrompt = f"You are a research assistant. Answer clearly and descriptively {stepPrompt}"
-            answerFromLlm = generate_response(answerPrompt)
-            step["answer"] = answerFromLlm
-            evaluation = scoring(stepPrompt,answerFromLlm)
-            step["evaluation"] = json.loads(evaluation)
-            print(decomposed_steps)
+    
 
-        else:
-            print("none")
+    if isinstance (decomposed_steps,str):
+        print("LLM Response =", decomposed_steps)
+        return decomposed_steps
+
+    else:
+
+        for step in decomposed_steps:
+                stepPrompt = step["prompt"]
+                answerPrompt = f"You are a research assistant. Answer clearly and descriptively {stepPrompt}"
+                answerFromLlm = generate_response(answerPrompt)
+                step["answer"] = answerFromLlm
+                evaluation = scoring(stepPrompt,answerFromLlm)
+                step["evaluation"] = json.loads(evaluation)
+                print(decomposed_steps)
+
+
+       
+
+
+        
     return decomposed_steps
 
