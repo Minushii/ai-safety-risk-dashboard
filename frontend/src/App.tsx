@@ -74,7 +74,9 @@ function App() {
                 <div>
                 
               <br/>
-              <p>{item.answer}</p>
+              <div style={{ whiteSpace: "pre-wrap" }}>
+                  {item.answer}
+              </div>
               <br/>
               <pre>{JSON.stringify(item.evaluation, null, 2)}</pre>
               </div>)}
